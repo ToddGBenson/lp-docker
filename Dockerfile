@@ -1,5 +1,8 @@
 FROM alpine:3.13.0
 
+LABEL Name=Hugo-Builder
+LABEL Version=1.0
+LABEL MAINTAINER="Todd Benson"
 
 SHELL ["/bin/ash", "-eo", "pipefail", "-c"]
 RUN apk add --no-cache \
@@ -24,5 +27,6 @@ RUN addgroup -Sg 1000 hugo \
 HEALTHCHECK --timeout=3s CMD hugo env || exit 1
 
 WORKDIR /src
-
+USER hugo
 EXPOSE 1313
+CMD ["wc -l"]

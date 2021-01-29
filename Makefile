@@ -3,8 +3,14 @@ default: build
 static: Dockerfile
 	@echo "Performing static analysis"
 	@docker run --rm -i hadolint/hadolint hadolint --ignore DL3018 - < Dockerfile
+	@docker run -it --rm -v $(PWD):/root/ projectatomic/dockerfile-lint dockerfile_lint -r policies/security_rules.yml
 
-build: static
+test: build
+	@docker start clair
+	@docker start db
+	~/github/clair-scanner/clair-scanner_darwin_amd64 --ip 192.168.0.3 lp/hugo-builder
+
+build: static 
 	@echo "Building Hugo Builder container..."
 	@docker build -t lp/hugo-builder .
 	@echo "Hugo Builder container built!"
