@@ -37,3 +37,10 @@ health:
 
 stop:
 	@docker stop hugo
+
+bofm:
+	~/github/tern/docker_run.sh ternd "report -f spdxtagvalue -i lp/hugo-builder:latest" > hugo-bofm.json
+	cat hugo-bofm.json
+
+inspect:
+	@docker inspect hugo

@@ -28,7 +28,42 @@ line_rules:
         reference_url:
           - "http://docs.projectatomic.io/container-best-practices/#"
           - "_recommended_labels_for_your_project"
-
+      creation_date:
+        valueRegex: /([\w]+)./
+        message: "Label 'creation_date' is missing or has invalid format"
+        description: "The 'creation_date' label line is useful for identifying the author in the form : Joe Smith <joe.smith@example.com>"
+        level: "error"
+        required: true
+      org.opencontainers.image.revision:
+        valueRegex: /([\w]+)./
+        message: "Label 'revision' is missing or has invalid format"
+        description: "The 'revision' label line is useful for identifying the author in the form : Joe Smith <joe.smith@example.com>"
+        level: "error"
+        required: true
+      org.opencontainers.image.version:
+        valueRegex: /([\w]+)./
+        message: "Label 'version' is missing or has invalid format"
+        description: "The 'version' label line is useful for identifying the author in the form : Joe Smith <joe.smith@example.com>"
+        level: "error"
+        required: true
+      license:
+        valueRegex: /([\w]+)./
+        message: "Label 'license' is missing or has invalid format"
+        description: "The 'license' label line is useful for identifying the author in the form : Joe Smith <joe.smith@example.com>"
+        level: "error"
+        required: true
+      org.opencontainers.image.url:
+        valueRegex: /([\w]+)./
+        message: "Label 'url' is missing or has invalid format"
+        description: "The 'url' label line is useful for identifying the author in the form : Joe Smith <joe.smith@example.com>"
+        level: "error"
+        required: true
+      org.opencontainers.image.title:
+        valueRegex: /([\w]+)./
+        message: "Label 'title' is missing or has invalid format"
+        description: "The 'title' label line is useful for identifying the author in the form : Joe Smith <joe.smith@example.com>"
+        level: "error"
+        required: true
   HEALTHCHECK:
     paramSyntaxRegex: /.+/
     defined_namevals:
