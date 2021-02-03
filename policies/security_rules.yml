@@ -2,8 +2,7 @@
 profile:
   name: "Security Rules"
   description: "Set of rules focus on security aspects of Dockerfiles"
-  includes:
-    - custom_rules.yml
+
 line_rules:
 
   ADD:
@@ -39,7 +38,7 @@ line_rules:
         level: "warn"
         message: "a privileged run container is allowed access to host devices"
         description: "Does this run need to be privileged?"
-        reference_url:
+        reference_url: 
           - "http://docs.docker.com/engine/reference/run/#"
           - "runtime-privilege-and-linux-capabilities"
 
@@ -63,24 +62,12 @@ line_rules:
         reference_url:
           - "https://medium.com/@mccode/processes-in-containers-should-not-run-as-root-2feae3f0df3b"
 
-  FROM:
-    paramSyntaxRegex: /^[\w./\-:]+(:[\w.]+)?(-[\w]+)?$/
-    rules:
-      -
-        label: "is_latest_tag"
-        regex: /latest/
-        level: "error"
-        message: "base image uses 'latest' tag"
-        description: "using the 'latest' tag may cause unpredictable builds. It is recommended that a specific tag is used in the FROM line or *-released which is the latest supported release."
-        reference_url:
-          - "https://docs.docker.com/engine/reference/builder/"
-          - "#from"
-
 required_instructions:
+
   -
     instruction: "USER"
     count: 1
-    level: "error"
+    level: "warn"
     message: "No 'USER' instruction in the file"
     description: "If a USER command is not specified, the container may be running as the root user"
     reference_url:
